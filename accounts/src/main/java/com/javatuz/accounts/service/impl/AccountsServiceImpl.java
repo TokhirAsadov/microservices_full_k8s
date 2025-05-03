@@ -1,10 +1,13 @@
 package com.javatuz.accounts.service.impl;
 
 import com.javatuz.accounts.constants.AccountsConstants;
+import com.javatuz.accounts.dto.AccountsDto;
 import com.javatuz.accounts.dto.CustomerDto;
 import com.javatuz.accounts.entity.Accounts;
 import com.javatuz.accounts.entity.Customer;
 import com.javatuz.accounts.exception.CustomerAlreadyExistsException;
+import com.javatuz.accounts.exception.ResourceNotFoundException;
+import com.javatuz.accounts.mapper.AccountsMapper;
 import com.javatuz.accounts.mapper.CustomerMapper;
 import com.javatuz.accounts.repository.AccountsRepository;
 import com.javatuz.accounts.repository.CustomerRepository;
@@ -35,6 +38,19 @@ public class AccountsServiceImpl implements IAccountsService {
         customer.setCreatedBy("Anonymous");
         Customer savedCustomer = customerRepository.save(customer);
         accountsRepository.save(createNewAccount(savedCustomer));
+    }
+
+    @Override
+    public CustomerDto fetchAccount(String mobileNumber) {
+        Customer customer = customerRepository.findByMobileNumber(mobileNumber).orElseThrow(
+                () -> new ResourceNotFoundException("Customer", "mobileNumber", mobileNumber)
+        );
+        Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(
+                () -> new ResourceNotFoundException("Accounts", "customerId", customer.getCustomerId().toString())
+        );
+        CustomerDto customerDto = CustomerMapper.mapToCustomerDto(customer, new CustomerDto());
+        customerDto.setAccountsDto(AccountsMapper.mapToAccountsDto(accounts,new AccountsDto()));
+        return customerDto;
     }
 
     private Accounts createNewAccount(Customer customer) {
