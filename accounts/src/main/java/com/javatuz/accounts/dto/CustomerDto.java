@@ -1,5 +1,6 @@
 package com.javatuz.accounts.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -11,6 +12,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Schema(
+   name = "Customer",
+   description = "Schema to hold Customer and Account information"
+)
 public class CustomerDto {
 
     @NotEmpty(message = "Name cannot be a null or empty")
