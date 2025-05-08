@@ -18,7 +18,23 @@
 		<license/>
 	</licenses>
 	<developers>
-		<developer/>
+		<developer>
+			<id>guvalak</id>
+			<name>Tokhir ASADOV</name>
+			<email>guvalakat1603@gmail.com</email>
+			<url>https://javatuz.com</url> <!-- ixtiyoriy -->
+			<organization>JavaTuz</organization> <!-- ixtiyoriy -->
+			<organizationUrl>https://javatuz.com</organizationUrl> <!-- ixtiyoriy -->
+			<roles>
+				<role>developer</role>
+				<role>maintainer</role>
+				<role>mentor</role>
+			</roles>
+			<timezone>+5</timezone> <!-- GMT nisbatan vaqt zonasi -->
+			<properties>
+				<github>https://github.com/TokhirAsadov</github>
+			</properties>
+		</developer>
 	</developers>
 	<scm>
 		<connection/>
