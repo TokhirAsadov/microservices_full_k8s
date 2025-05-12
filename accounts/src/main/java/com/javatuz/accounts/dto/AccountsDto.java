@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class AccountsDto {
 
     @NotEmpty(message = "AccountNumber cannot be a null or empty")
-    @Pattern(regexp = "(^S|[0-9]{10})",message = "Mobile number must be 10 digits")
+    @Pattern(regexp = "(^S|[0-9]{9})",message = "Mobile number must be 9 digits")
     @Schema(
             description = "Account Number of Eazy Bank account", example = "345443324"
     )
