@@ -1,0 +1,28 @@
+services:
+  accounts:
+    image: registry.hub.docker.com/guvalakat/accounts:s1
+    container_name: accounts-ms
+    ports:
+      - "8080:8080"
+    networks:
+      - javatuz
+
+  loans:
+    image: registry.hub.docker.com/guvalakat/loans:s1
+    container_name: loans-ms
+    ports:
+      - "8090:8090"
+    networks:
+      - javatuz
+
+  cards:
+    image: registry.hub.docker.com/guvalakat/cards:s1
+    container_name: cards-ms
+    ports:
+      - "9000:9000"
+    networks:
+      - javatuz
+
+networks:
+  javatuz:
+    driver: bridge
