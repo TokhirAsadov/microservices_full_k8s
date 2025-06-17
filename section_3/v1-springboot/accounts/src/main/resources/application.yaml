@@ -18,7 +18,7 @@ spring:
     show-sql: true
 
 build:
-  version: "1.0"
+  version: "3.0"
 
 accounts:
   message: "Welcome to EazyBank accounts related local APIs"
