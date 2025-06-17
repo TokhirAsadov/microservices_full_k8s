@@ -1,0 +1,11 @@
+build:
+  version: "1.0"
+
+accounts:
+  message: "PROD"
+  contactDetails:
+    name: "Tokhir Asadov - Developer"
+    email: "guvalakat1603@gmail.com"
+  onCallSupport:
+    - (99)336-1603
+    - (95)236-0555
