@@ -16,6 +16,15 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+#todo:::::::::  profiling  ::::::::::::::::
+  config:
+    import:
+      - "application_prod.yaml"
+      - "application_qa.yaml"
+  profiles:
+    active:
+        - "qa"
+
 
 build:
   version: "3.0"
