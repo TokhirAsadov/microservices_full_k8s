@@ -1,10 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
 build:
   version: "1.0"
 
 accounts:
-  message: "PROD"
+  message: "Welcome to EazyBank accounts related PROD APIs"
   contactDetails:
-    name: "Tokhir Asadov - Developer"
+    name: "Eshmatov Big`ay - Product Owner"
     email: "guvalakat1603@gmail.com"
   onCallSupport:
     - (99)336-1603
