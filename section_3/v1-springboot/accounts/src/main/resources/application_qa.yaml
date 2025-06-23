@@ -1,10 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: qa
+
 build:
   version: "2.0"
 
 accounts:
-  message: "QA"
+  message: "Welcome to EazyBank accounts related QA APIs"
   contactDetails:
-    name: "Tokhir Asadov - Developer"
+    name: "Aliyev Vali - QA Engineer"
     email: "guvalakat1603@gmail.com"
   onCallSupport:
     - (99)336-1603
