@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+build:
+  version: "1.0"
+
+loans:
+  message: "Welcome to EazyBank loans related PROD APIs"
+  contactDetails:
+    name: "Eshmatov Big`ay - Product Owner"
+    email: "guvalakat1603@gmail.com"
+  onCallSupport:
+    - (99)336-1603
+    - (95)236-0555
