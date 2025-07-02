@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: qa
+
+build:
+  version: "2.0"
+
+cards:
+  message: "Welcome to EazyBank cards related QA APIs"
+  contactDetails:
+    name: "Aliyev Vali - QA Engineer"
+    email: "guvalakat1603@gmail.com"
+  onCallSupport:
+    - (99)336-1603
+    - (95)236-0555
