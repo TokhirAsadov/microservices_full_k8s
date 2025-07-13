@@ -1,0 +1,39 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: accounts
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+#todo:::::::::  profiling  ::::::::::::::::
+  config:
+    import:
+      - "application_prod.yaml"
+      - "application_qa.yaml"
+  profiles:
+    active:
+        - "qa"
+
+
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to EazyBank accounts related local APIs"
+  contactDetails:
+    name: "Tokhir Asadov - Developer"
+    email: "guvalakat1603@gmail.com"
+  onCallSupport:
+    - (99)336-1603
+    - (95)236-0555
