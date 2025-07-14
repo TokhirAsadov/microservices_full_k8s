@@ -8,7 +8,9 @@ spring:
     config:
       server:
         native:
-          search-locations: "classpath:/config"
+#          search-locations: "classpath:/config" # resources package ichidagilar uchun
+#          search-locations: "file:///Users//eazybank//Document//config" # linux uchun. yani linux dagi biror package ning ichida config filelarni saqlab ishlatish
+          search-locations: "file:///C://config" # windows uchun. yani windows dagi biror package ning ichida config filelarni saqlab ishlatish
 
 server:
   port: 8071
