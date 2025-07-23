@@ -1,5 +1,5 @@
 services:
-  rabbitmq:
+  rabbit:
     image: rabbitmq:4-management
     hostname: rabbitmq
     ports:
@@ -19,6 +19,9 @@ services:
     container_name: configserver-ms
     ports:
       - "8071:8071"
+    depends_on:
+      rabbit:
+        condition: service_healthy
 
 #   health checklar uchun
 #   readiness-state: servis tayyorligini tekshiradi
