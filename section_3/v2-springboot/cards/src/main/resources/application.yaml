@@ -22,8 +22,11 @@ spring:
   config:
     import: "optional:configserver:http://localhost:8071/"
 
+# bu yerda management endpointslarini ochib beramiz
+# yani config serverga kirish uchun
+# config server dagi o`zgarishlarni refresh qilish uchun
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "*" #  9000/actuator/refresh - POST
