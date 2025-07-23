@@ -1,4 +1,19 @@
 services:
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq-ms
+    ports:
+      - "5672:5672"   # RabbitMQ server port
+      - "15672:15672" # RabbitMQ management UI port
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 10s     # 10 soniyada bir marta tekshiradi
+      timeout: 5s       # 5 soniyada javob qaytarishi kerak
+      retries: 3        # 3 marta tekshiradi
+      start_period: 10s # 10 soniyadan keyin tekshira boshlaydi
+    networks:
+      - javatuz
+
   configserver:
     image: registry.hub.docker.com/guvalakat/configserver:s2
     container_name: configserver-ms
@@ -9,9 +24,9 @@ services:
 #   readiness-state: servis tayyorligini tekshiradi
     healthcheck:
       test: "curl --fail --silent http://localhost:8071/actuator/health/readiness | grep UP || exit 1"
-      interval: 10s # 10 soniyada bir marta tekshiradi
-      timeout: 5s # 5 soniyada javob qaytarishi kerak
-      retries: 3 # 3 marta tekshiradi
+      interval: 10s     # 10 soniyada bir marta tekshiradi
+      timeout: 5s       # 5 soniyada javob qaytarishi kerak
+      retries: 3        # 3 marta tekshiradi
       start_period: 10s # 10 soniyadan keyin tekshira boshlaydi
     deploy:
       resources:
@@ -19,11 +34,15 @@ services:
           memory: 700m
     networks:
       - javatuz
+
   accounts:
     image: registry.hub.docker.com/guvalakat/accounts:s2
     container_name: accounts-ms
     ports:
       - "8080:8080"
+    depends_on:
+      configserver:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -41,6 +60,9 @@ services:
     container_name: loans-ms
     ports:
       - "8090:8090"
+    depends_on:
+      configserver:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -57,6 +79,9 @@ services:
     container_name: cards-ms
     ports:
       - "9000:9000"
+    depends_on:
+      configserver:
+        condition: service_healthy
     deploy:
       resources:
         limits:
