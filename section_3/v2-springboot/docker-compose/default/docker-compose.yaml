@@ -11,8 +11,9 @@ services:
       timeout: 5s       # 5 soniyada javob qaytarishi kerak
       retries: 3        # 3 marta tekshiradi
       start_period: 10s # 10 soniyadan keyin tekshira boshlaydi
-    networks:
-      - javatuz
+    extends:
+      file: common-config.yaml
+      service: network-deploy-service
 
   configserver:
     image: registry.hub.docker.com/guvalakat/configserver:s2
@@ -31,31 +32,20 @@ services:
       timeout: 5s       # 5 soniyada javob qaytarishi kerak
       retries: 3        # 3 marta tekshiradi
       start_period: 10s # 10 soniyadan keyin tekshira boshlaydi
-    deploy:
-      resources:
-        limits:
-          memory: 700m
-    networks:
-      - javatuz
+    extends:
+      file: common-config.yaml
+      service: microservice-base-config
 
   accounts:
     image: registry.hub.docker.com/guvalakat/accounts:s2
     container_name: accounts-ms
     ports:
       - "8080:8080"
-    depends_on:
-      configserver:
-        condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          memory: 700m
-    networks:
-      - javatuz
     environment:
       SPRING_APPLICATION_NAME: "accounts"
-      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
-      SPRING_PROFILES_ACTIVE: "default"
+    extends:
+      file: common-config.yaml
+      service: microservice-configserver-config
 
 
   loans:
@@ -63,38 +53,22 @@ services:
     container_name: loans-ms
     ports:
       - "8090:8090"
-    depends_on:
-      configserver:
-        condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          memory: 700m
-    networks:
-      - javatuz
     environment:
       SPRING_APPLICATION_NAME: "loans"
-      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
-      SPRING_PROFILES_ACTIVE: "default"
+    extends:
+      file: common-config.yaml
+      service: microservice-configserver-config
 
   cards:
     image: registry.hub.docker.com/guvalakat/cards:s2
     container_name: cards-ms
     ports:
       - "9000:9000"
-    depends_on:
-      configserver:
-        condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          memory: 700m
-    networks:
-      - javatuz
     environment:
       SPRING_APPLICATION_NAME: "cards"
-      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
-      SPRING_PROFILES_ACTIVE: "default"
+    extends:
+      file: common-config.yaml
+      service: microservice-configserver-config
 
 networks:
   javatuz:
