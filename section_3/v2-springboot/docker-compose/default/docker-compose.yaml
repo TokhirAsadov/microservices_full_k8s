@@ -4,6 +4,15 @@ services:
     container_name: configserver-ms
     ports:
       - "8071:8071"
+
+#   health checklar uchun
+#   readiness-state: servis tayyorligini tekshiradi
+    healthcheck:
+      test: "curl --fail --silent http://localhost:8071/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s # 10 soniyada bir marta tekshiradi
+      timeout: 5s # 5 soniyada javob qaytarishi kerak
+      retries: 3 # 3 marta tekshiradi
+      start_period: 10s # 10 soniyadan keyin tekshira boshlaydi
     deploy:
       resources:
         limits:
