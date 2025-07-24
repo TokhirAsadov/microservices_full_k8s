@@ -16,7 +16,7 @@ services:
       service: network-deploy-service
 
   configserver:
-    image: registry.hub.docker.com/guvalakat/configserver:s2
+    image: registry.hub.docker.com/guvalakat/configserver:s3
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -37,7 +37,7 @@ services:
       service: microservice-base-config
 
   accounts:
-    image: registry.hub.docker.com/guvalakat/accounts:s2
+    image: registry.hub.docker.com/guvalakat/accounts:s3
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -49,7 +49,7 @@ services:
 
 
   loans:
-    image: registry.hub.docker.com/guvalakat/loans:s2
+    image: registry.hub.docker.com/guvalakat/loans:s3
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -60,7 +60,7 @@ services:
       service: microservice-configserver-config
 
   cards:
-    image: registry.hub.docker.com/guvalakat/cards:s2
+    image: registry.hub.docker.com/guvalakat/cards:s3
     container_name: cards-ms
     ports:
       - "9000:9000"
