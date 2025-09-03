@@ -30,15 +30,29 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*" #  8090/actuator/refresh - POST
-
-# health checklar uchun
-  health:
-    readiness-state:
-      enabled: true
-    liveness-state:
-      enabled: true
+        include: "*" #  9000/actuator/refresh - POST
   endpoint:
-    health:
-      probes:
-        enabled: true
+    shutdown:
+      access: read_only
+  info:
+    env:
+      enabled: true
+
+endpoints:
+  shutdown:
+    enabled: true
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: "http://localhost:8070/eureka/"
+
+info:
+  app:
+    name: "loans"
+    description: "Eazy Bank Loans Application"
+    version: "1.0.0"
