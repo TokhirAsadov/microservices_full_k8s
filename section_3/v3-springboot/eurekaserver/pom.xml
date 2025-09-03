@@ -5,36 +5,20 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.5</version>
+		<version>3.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.javatuz</groupId>
-	<artifactId>configserver</artifactId>
+	<artifactId>eurekaserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>configserver</name>
-	<description>Config Server for EazyBank microservices</description>
+	<name>eurekaserver</name>
+	<description>Service Descovery agent for Eazy Bank microservices</description>
 	<url/>
 	<licenses>
 		<license/>
 	</licenses>
 	<developers>
-		<developer>
-			<id>guvalak</id>
-			<name>Tokhir ASADOV</name>
-			<email>guvalakat1603@gmail.com</email>
-			<url>https://javatuz.com</url> <!-- ixtiyoriy -->
-			<organization>JavaTuz</organization> <!-- ixtiyoriy -->
-			<organizationUrl>https://javatuz.com</organizationUrl> <!-- ixtiyoriy -->
-			<roles>
-				<role>developer</role>
-				<role>maintainer</role>
-				<role>mentor</role>
-			</roles>
-			<timezone>+5</timezone> <!-- GMT nisbatan vaqt zonasi -->
-			<properties>
-				<github>https://github.com/TokhirAsadov</github>
-			</properties>
-		</developer>
+		<developer/>
 	</developers>
 	<scm>
 		<connection/>
@@ -44,7 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.0</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -53,7 +37,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-server</artifactId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
 
 		<dependency>
@@ -79,16 +67,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.google.cloud.tools</groupId>
-				<artifactId>jib-maven-plugin</artifactId>
-				<version>3.4.5</version>
-				<configuration>
-					<to>
-						<image>guvalakat/${project.artifactId}:s3</image>
-					</to>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

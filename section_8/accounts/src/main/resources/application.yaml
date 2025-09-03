@@ -22,17 +22,6 @@ spring:
   config:
     import: "optional:configserver:http://localhost:8071/"
 
-  #  /actuator/busrefresh
-  #  config serverga bog'lanish uchun
-  #  rabbit mq ga bog`langan barcha microservice larni
-  #  refresh qilish uchun ishlatiladi
-  #  bunda microservice dagi istalgan server ning /actuator/busrefresh API ga POST request yuboriladi
-  #  va barcha microservice lar config filelari automatik yangilanadi
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
 
 # bu yerda management endpointslarini ochib beramiz
 # yani config serverga kirish uchun
