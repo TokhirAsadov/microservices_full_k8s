@@ -144,7 +144,7 @@
                 <version>3.4.5</version>
                 <configuration>
                     <to>
-                        <image>guvalakat/${project.artifactId}:s3</image>
+                        <image>guvalakat/${project.artifactId}:s8</image>
                     </to>
                 </configuration>
             </plugin>
