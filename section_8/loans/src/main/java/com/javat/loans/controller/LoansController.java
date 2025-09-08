@@ -95,7 +95,7 @@ public class LoansController {
             )
     })
     @GetMapping("/fetch")
-    public ResponseEntity<LoansDto> fetchAccountDetails(@RequestParam
+    public ResponseEntity<LoansDto> fetchLoansDetails(@RequestParam
                                                            @Pattern(regexp = "(^S|[0-9]{9})",message = "Mobile number must be 9 digits")
                                                            String mobileNumber){
         LoansDto loansDto = iLoansService.fetchLoan(mobileNumber);
