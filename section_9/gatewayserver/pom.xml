@@ -99,6 +99,33 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!--<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version> &lt;!&ndash; So‘nggi barqaror versiya &ndash;&gt;
+				<configuration>
+					<source>21</source> &lt;!&ndash; Sizning pom.xml'dagi java.version ga mos &ndash;&gt;
+					<target>21</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>-->
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.5</version>
+				<configuration>
+					<to>
+						<image>guvalakat/${project.artifactId}:s9</image>
+					</to>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
