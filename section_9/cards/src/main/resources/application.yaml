@@ -53,3 +53,9 @@ info:
     name: "cards"
     description: "Eazy Bank Cards Application"
     version: "1.0.0"
+
+logging:
+  level:
+    com:
+      javatuz:
+        cards: DEBUG
