@@ -20,15 +20,15 @@ public class GatewayserverApplication {
 		return builder.routes()
 				.route(p -> p.path("/eazybank/accounts/**")
 						.filters(f -> f.rewritePath("/eazybank/accounts/(?<segment>.*)", "/${segment}")
-								.addRequestHeader("X-Response-Time", LocalDateTime.now().toString()))
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
 						.uri("lb://ACCOUNTS"))
 				.route(p -> p.path("/eazybank/loans/**")
 						.filters(f -> f.rewritePath("/eazybank/loans/(?<segment>.*)", "/${segment}")
-								.addRequestHeader("X-Response-Time", LocalDateTime.now().toString()))
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
 						.uri("lb://LOANS"))
 				.route(p -> p.path("/eazybank/cards/**")
 						.filters(f -> f.rewritePath("/eazybank/cards/(?<segment>.*)", "/${segment}")
-								.addRequestHeader("X-Response-Time", LocalDateTime.now().toString()))
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
 						.uri("lb://CARDS"))
 				.build();
 	}
