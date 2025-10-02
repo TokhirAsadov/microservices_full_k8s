@@ -1,6 +1,6 @@
 services:
   configserver:
-    image: registry.hub.docker.com/guvalakat/configserver:s8
+    image: registry.hub.docker.com/guvalakat/configserver:s9
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -17,7 +17,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: registry.hub.docker.com/guvalakat/eurekaserver:s8
+    image: registry.hub.docker.com/guvalakat/eurekaserver:s9
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -37,10 +37,16 @@ services:
 
 
   accounts:
-    image: registry.hub.docker.com/guvalakat/accounts:s8
+    image: registry.hub.docker.com/guvalakat/accounts:s9
     container_name: accounts-ms
     ports:
       - "8080:8080"
+    healthcheck:
+      test: "curl --fail --silent http://localhost:8080/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s     # 10 soniyada bir marta tekshiradi
+      timeout: 5s       # 5 soniyada javob qaytarishi kerak
+      retries: 3        # 3 marta tekshiradi
+      start_period: 10s # 10 soniyadan keyin tekshira boshlaydi
     environment:
       SPRING_APPLICATION_NAME: "accounts"
     extends:
@@ -49,10 +55,16 @@ services:
 
 
   loans:
-    image: registry.hub.docker.com/guvalakat/loans:s8
+    image: registry.hub.docker.com/guvalakat/loans:s9
     container_name: loans-ms
     ports:
       - "8090:8090"
+    healthcheck:
+      test: "curl --fail --silent http://localhost:8090/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s     # 10 soniyada bir marta tekshiradi
+      timeout: 5s       # 5 soniyada javob qaytarishi kerak
+      retries: 3        # 3 marta tekshiradi
+      start_period: 10s # 10 soniyadan keyin tekshira boshlaydi
     environment:
       SPRING_APPLICATION_NAME: "loans"
     extends:
@@ -60,12 +72,36 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: registry.hub.docker.com/guvalakat/cards:s8
+    image: registry.hub.docker.com/guvalakat/cards:s9
     container_name: cards-ms
     ports:
       - "9000:9000"
+    healthcheck:
+      test: "curl --fail --silent http://localhost:9000/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s     # 10 soniyada bir marta tekshiradi
+      timeout: 5s       # 5 soniyada javob qaytarishi kerak
+      retries: 3        # 3 marta tekshiradi
+      start_period: 10s # 10 soniyadan keyin tekshira boshlaydi
     environment:
       SPRING_APPLICATION_NAME: "cards"
+    extends:
+      file: common-config.yaml
+      service: microservice-eureka-config
+
+  gatewayserver:
+    image: registry.hub.docker.com/guvalakat/gatewayserver:s9
+    container_name: gatewayserver-ms
+    ports:
+      - "8072:8072"
+    depends_on:
+      accounts:
+        condition: service_healthy
+      loans:
+        condition: service_healthy
+      cards:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: "gatewayserver"
     extends:
       file: common-config.yaml
       service: microservice-eureka-config
