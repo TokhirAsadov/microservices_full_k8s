@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: gatewayserver
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: false
+              lower-case-service-id: true
+    compatibility-verifier:
+      enabled: false
+
+# bu yerda management endpointslarini ochib beramiz
+# yani config serverga kirish uchun
+# config server dagi o`zgarishlarni refresh qilish uchun
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" #  9000/actuator/refresh - POST
+  endpoint:
+    gateway:
+      access: unrestricted
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: "gatewayserver"
+    description: "Eazy Bank Gateway Server Application"
+    version: "1.0.0"
+
+logging:
+  level:
+    com:
+      javat:
+        gatewayserver: DEBUG
