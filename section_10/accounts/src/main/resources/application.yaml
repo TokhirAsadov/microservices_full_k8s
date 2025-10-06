@@ -22,6 +22,11 @@ spring:
   config:
     import: "optional:configserver:http://localhost:8071/"
 
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
 
 # bu yerda management endpointslarini ochib beramiz
 # yani config serverga kirish uchun
@@ -66,3 +71,11 @@ logging:
     com:
       javatuz:
         accounts: DEBUG
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000
