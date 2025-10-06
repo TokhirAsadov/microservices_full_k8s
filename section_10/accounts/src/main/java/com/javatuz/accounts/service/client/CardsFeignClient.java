@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * default holatda 30s eureka dagi cards serverga ulanishni kutadi
  * */
-@FeignClient("cards")
+@FeignClient(name = "cards", fallback = CardsFallback.class)
 public interface CardsFeignClient {
 
     @GetMapping(value = "/api/fetch",consumes = "application/json")
