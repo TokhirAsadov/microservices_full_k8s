@@ -23,7 +23,7 @@ public class GatewayserverApplication {
 	}
 
 	@Bean
-	public RouteLocator eazyBankRouteConfog(RouteLocatorBuilder builder) {
+	public RouteLocator eazyBankRouteConfig(RouteLocatorBuilder builder) {
 		return builder.routes()
 				.route(p -> p.path("/eazybank/accounts/**")
 						.filters(f -> f.rewritePath("/eazybank/accounts/(?<segment>.*)", "/${segment}")
