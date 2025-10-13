@@ -6,6 +6,7 @@ import com.javatuz.accounts.dto.CustomerDto;
 import com.javatuz.accounts.dto.ErrorResponseDto;
 import com.javatuz.accounts.dto.ResponseDto;
 import com.javatuz.accounts.service.IAccountsService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -225,6 +226,7 @@ public class AccountsController {
                     )
             )
     })
+    @RateLimiter(name = "getJavaVersion")
     @GetMapping("/java-version")
     public ResponseEntity<String> getJavaVersion(){
         return ResponseEntity
