@@ -43,7 +43,9 @@ public class GatewayserverApplication {
 						.uri("lb://LOANS"))
 				.route(p -> p.path("/eazybank/cards/**")
 						.filters(f -> f.rewritePath("/eazybank/cards/(?<segment>.*)", "/${segment}")
-								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+								.requestRateLimiter(config -> config.setRateLimiter(redisRateLimiter())
+										.setKeyResolver(userKeyResolver())))
 						.uri("lb://CARDS"))
 				.build();
 	}
