@@ -12,7 +12,7 @@ services:
       service: network-deploy-service
 
   configserver:
-    image: registry.hub.docker.com/guvalakat/configserver:s10
+    image: registry.hub.docker.com/guvalakat/configserver:s11
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -29,7 +29,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: registry.hub.docker.com/guvalakat/eurekaserver:s10
+    image: registry.hub.docker.com/guvalakat/eurekaserver:s11
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -49,7 +49,7 @@ services:
 
 
   accounts:
-    image: registry.hub.docker.com/guvalakat/accounts:s10
+    image: registry.hub.docker.com/guvalakat/accounts:s11
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -67,7 +67,7 @@ services:
 
 
   loans:
-    image: registry.hub.docker.com/guvalakat/loans:s10
+    image: registry.hub.docker.com/guvalakat/loans:s11
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -84,7 +84,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: registry.hub.docker.com/guvalakat/cards:s10
+    image: registry.hub.docker.com/guvalakat/cards:s11
     container_name: cards-ms
     ports:
       - "9000:9000"
@@ -101,7 +101,7 @@ services:
       service: microservice-eureka-config
 
   gatewayserver:
-    image: registry.hub.docker.com/guvalakat/gatewayserver:s10
+    image: registry.hub.docker.com/guvalakat/gatewayserver:s11
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
